@@ -4,8 +4,15 @@ let gameActive = false;
 let gameTimer;
 let countdownTimer;
 
-// ★【追加】音の読み込み
+// script.js の一番上をこれに変えてみて！
 const hitSound = new Audio('sounds/hit.mp3');
+
+// iPad用のおまじない：最初のクリックで音を「解禁」する
+window.addEventListener('touchstart', function() {
+    hitSound.play();
+    hitSound.pause();
+    hitSound.currentTime = 0;
+}, { once: true });
 
 function startGame() {
     const holeCount = document.getElementById('hole-count').value;
