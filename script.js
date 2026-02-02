@@ -4,15 +4,16 @@ let gameActive = false;
 let gameTimer;
 let countdownTimer;
 
+// ★【追加】音の読み込み
+const hitSound = new Audio('sounds/hit.mp3');
+
 function startGame() {
     const holeCount = document.getElementById('hole-count').value;
     timeLeft = document.getElementById('game-time').value;
     
-    // 画面の切り替え
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('game-area').style.display = 'block';
     
-    // 穴を動的に作成
     const container = document.getElementById('container');
     container.innerHTML = '';
     for (let i = 0; i < holeCount; i++) {
@@ -26,12 +27,10 @@ function startGame() {
     document.getElementById('timer').innerText = timeLeft;
     gameActive = true;
 
-    // 恐竜を出すループ
     gameTimer = setInterval(() => {
         if (gameActive) showDino();
     }, 1500);
 
-    // 制限時間のカウントダウン
     countdownTimer = setInterval(() => {
         timeLeft--;
         document.getElementById('timer').innerText = timeLeft;
@@ -51,23 +50,26 @@ function showDino() {
     dino.classList.add('dino');
     hole.appendChild(dino);
 
-    // 出現
     setTimeout(() => dino.classList.add('up'), 10);
 
-    // タップ処理
+    // ★【修正】タップした時の処理
     const hit = () => {
+        // 音を鳴らす魔法
+        hitSound.currentTime = 0; // 連続で叩いても最初から再生されるように
+        hitSound.play(); 
+
         score += 10;
         document.getElementById('score').innerText = score;
         dino.remove();
     };
+
     dino.addEventListener('touchstart', (e) => { e.preventDefault(); hit(); });
     dino.addEventListener('mousedown', hit);
 
-    // 【リクエスト】5秒間（5000ms）そのまま、そのあとひっこむ
     setTimeout(() => {
         if (dino.parentNode) {
             dino.classList.remove('up');
-            setTimeout(() => dino.remove(), 300); // ひっこむアニメーション後に削除
+            setTimeout(() => dino.remove(), 300);
         }
     }, 5000); 
 }
