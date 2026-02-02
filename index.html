@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恐竜たたき！カスタム版</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>恐竜たたき！</h1>
+    
+    <div id="setup-screen">
+        <div>
+            <label>穴の数：</label>
+            <select id="hole-count">
+                <option value="3">3個</option>
+                <option value="6" selected>6個</option>
+                <option value="9">9個</option>
+            </select>
+        </div>
+        <div style="margin-top: 10px;">
+            <label>制限時間：</label>
+            <select id="game-time">
+                <option value="30">30秒</option>
+                <option value="45">45秒</option>
+                <option value="60">60秒</option>
+            </select>
+        </div>
+        <button id="start-btn" onclick="startGame()">ゲームスタート！</button>
+    </div>
+
+    <div id="game-area" style="display: none;">
+        <div class="info-bar">
+            <span>スコア: <span id="score">0</span></span>
+            <span>残り時間: <span id="timer">0</span>秒</span>
+        </div>
+        <div class="game-container" id="container">
+            </div>
+        <button onclick="location.reload()">タイトルに戻る</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

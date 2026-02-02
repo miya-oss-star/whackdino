@@ -1,0 +1,83 @@
+body {
+    background-color: #e0f2f1;
+    font-family: sans-serif;
+    text-align: center;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+}
+
+#setup-screen {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+select {
+    padding: 5px 10px;
+    font-size: 18px;
+}
+
+.info-bar {
+    font-size: 24px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.game-container {
+    display: grid;
+    /* 穴の数に応じて3列で並べる設定 */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.hole {
+    width: 100px;
+    height: 100px;
+    background: #5d4037;
+    border-radius: 50%;
+    border: 8px solid #3e2723;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.dino {
+    width: 80%;
+    height: 80%;
+    /* ↓ここを自分の恐竜画像の名前に合わせて書き換える */
+    background-image: url('images/dino1.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    
+    /* ↓背景色が残っていると絵が重なってしまうので、透明にするか消します */
+    background-color: transparent; 
+    
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: -100%;
+    left: 10%;
+    transition: bottom 0.3s ease-out;
+}
+
+.dino.up {
+    bottom: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
